@@ -1,0 +1,54 @@
+# импортирования библиотеки для случайного числа
+from random import randint
+# импорт библиотеки для использования функции задержки
+import time
+
+# блок переменых
+hp = 100
+speed = 0
+rock = 1
+yeti = 2
+neighbour = 3
+unicorn = 4
+totalDistance = 400
+
+# блок функций
+def CheckSkill(enemy, hp, speed, num):
+    # в переменную checkSkill записываем то что вводит пользователь
+        checkSkill = int(input(f'У вас на пути встал {enemy}, куда свернуть? \n1. Влево \n2. Вправо \n3. прыжок'))
+    # случайным образом выбираю верный ответ
+        randomNumber = randint(1,3)
+    # если введенное число == случайному числу то избежал иначе столкнулся
+        if (checkSkill == randomNumber):
+            print(f'Ты избежал {enemy} на скорости ', speed, ' км/сек' )
+        else:
+            hp -= num
+            print(f'ты столкнулся с {enemy}, осталось: {hp} хп')
+            speed = 0
+
+
+while True:
+   # Если проехали всю дистанцию то вводим сообщение и выходим из цикла
+    if totalDistance <= 0:
+        print('Ты победил')
+        break
+    # если хп меньше нуля то мы выходим из цикла и игра заканчивается
+    elif (hp <= 0):
+        print('Помер')
+        break
+    # cлучайным образом выбирается противник
+    randomNumber = randint(0,15)
+   # если рандомное число равно id противника то он становится противником
+    if randomNumber == yeti:
+        CheckSkill('Йети', hp, speed,10)
+    elif randomNumber == neighbour:
+        CheckSkill('Сосед', hp, speed,20)
+    elif randomNumber == rock:
+        CheckSkill('Камень', hp, speed,5)
+    elif randomNumber == unicorn:
+        CheckSkill('единарог', hp, speed,20)
+
+    totalDistance -= speed
+    speed+=1
+    print('Осталось проехать ', totalDistance)
+    time.sleep(0.5)
