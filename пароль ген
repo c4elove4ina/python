@@ -1,0 +1,11 @@
+from random import randint
+
+def Pass():
+    passwordLen = randint(7,10)
+    password = ""
+    for i in range(passwordLen):
+        password = password + str(chr(randint(33,126)))
+    print(password)
+
+Pass()
+print(chr(randint(33,126)))
