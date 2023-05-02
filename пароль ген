@@ -1,11 +1,11 @@
 from random import randint
+a = 48
+b = 57
+def Pass(a, b):
+     passwordLen = randint(7, 10)
+     password = ""
+     for i in range(passwordLen):
+        password = password + chr(randint(a, b))
+     return password
 
-def Pass():
-    passwordLen = randint(7,10)
-    password = ""
-    for i in range(passwordLen):
-        password = password + str(chr(randint(33,126)))
-    print(password)
-
-Pass()
-print(chr(randint(33,126)))
+print(Pass(a, b) + "_" + Pass(97, 122) + "_" + Pass(1, 47))
